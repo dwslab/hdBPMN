@@ -1,6 +1,9 @@
 # hdBPMN - hand-drawn BPMN dataset
 
-More info will be provided.
+This repository contains the hand-drawn BPMN dataset published jointly with our CAiSE 2021 paper `Sketch2BPMN: Automatic Recognition of Hand-drawn BPMN Models` by Bernhard Schäfer, Han van der Aa, Henrik Leopold and Heiner Stuckenschmidt.
+
+Releases:
+- [v0.0.1](../../releases/tag/v0.0.1): dataset version used in CAiSE paper
 
 ## Project Organization
 
