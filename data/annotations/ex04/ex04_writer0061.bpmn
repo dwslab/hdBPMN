@@ -4,8 +4,8 @@
   <collaboration id="Collaboration_0pym87b">
     <participant id="Participant_008tj9e" name="cashier" processRef="Process_0de3tte" />
     <participant id="Participant_1g7sa44" name="owner" />
-    <messageFlow id="Flow_1md02fu" sourceRef="Participant_1g7sa44" targetRef="Event_15xujul" />
     <messageFlow id="Flow_0dhgt6y" sourceRef="Event_1dzkd3j" targetRef="Participant_1g7sa44" />
+    <messageFlow id="Flow_0swqdun" sourceRef="Participant_1g7sa44" targetRef="Event_1y1ukkb" />
   </collaboration>
   <process id="Process_0de3tte">
     <laneSet id="LaneSet_1qd8q6z" />
@@ -56,6 +56,7 @@
     <task id="Activity_1t0gph2" name="fees notice">
       <incoming>Flow_0xk66nr</incoming>
       <outgoing>Flow_1c2mk2v</outgoing>
+      <outgoing>Flow_0xpvujs</outgoing>
     </task>
     <task id="Activity_1b399rl" name="wait for the owner to pay the fees">
       <incoming>Flow_1c2mk2v</incoming>
@@ -92,9 +93,11 @@
     <sequenceFlow id="Flow_1o4z5ls" sourceRef="Activity_14f5yrx" targetRef="Gateway_1u68sx7" />
     <sequenceFlow id="Flow_10xg555" sourceRef="Event_15xujul" targetRef="Activity_14f5yrx" />
     <startEvent id="Event_1y1ukkb" name="request letter">
+      <outgoing>Flow_1p5ek71</outgoing>
       <messageEventDefinition id="MessageEventDefinition_1aubipe" />
     </startEvent>
     <startEvent id="Event_15xujul" name="received a request">
+      <incoming>Flow_1p5ek71</incoming>
       <outgoing>Flow_10xg555</outgoing>
       <messageEventDefinition id="MessageEventDefinition_0kqe4sw" />
     </startEvent>
@@ -102,8 +105,11 @@
       <incoming>Flow_0sn4p2g</incoming>
     </endEvent>
     <startEvent id="Event_1dzkd3j" name="fees informations">
+      <incoming>Flow_0xpvujs</incoming>
       <messageEventDefinition id="MessageEventDefinition_1gkykcw" />
     </startEvent>
+    <sequenceFlow id="Flow_0xpvujs" sourceRef="Activity_1t0gph2" targetRef="Event_1dzkd3j" />
+    <sequenceFlow id="Flow_1p5ek71" sourceRef="Event_1y1ukkb" targetRef="Event_15xujul" />
   </process>
   <bpmndi:BPMNDiagram id="sid-74620812-92c4-44e5-949c-aa47393d3830">
     <bpmndi:BPMNPlane id="sid-cdcae759-2af7-4a6d-bd02-53f3352a731d" bpmnElement="Collaboration_0pym87b">
@@ -184,6 +190,15 @@
       <bpmndi:BPMNEdge id="Flow_0sn4p2g_di" bpmnElement="Flow_0sn4p2g">
         <omgdi:waypoint x="1452" y="589" />
         <omgdi:waypoint x="1476" y="589" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xpvujs_di" bpmnElement="Flow_0xpvujs">
+        <omgdi:waypoint x="1164" y="525" />
+        <omgdi:waypoint x="1164" y="299" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1p5ek71_di" bpmnElement="Flow_1p5ek71">
+        <omgdi:waypoint x="135" y="318" />
+        <omgdi:waypoint x="123" y="368" />
+        <omgdi:waypoint x="123" y="412" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_14f5yrx_di" bpmnElement="Activity_14f5yrx">
         <omgdc:Bounds x="214" y="385" width="180" height="90" />
@@ -287,16 +302,13 @@
         <omgdi:waypoint x="1354" y="685" />
         <omgdi:waypoint x="1294" y="685" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1md02fu_di" bpmnElement="Flow_1md02fu">
-        <omgdi:waypoint x="143" y="225" />
-        <omgdi:waypoint x="122" y="412" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="135" y="282" width="65" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0dhgt6y_di" bpmnElement="Flow_0dhgt6y">
         <omgdi:waypoint x="1160" y="264" />
         <omgdi:waypoint x="1160" y="225" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0swqdun_di" bpmnElement="Flow_0swqdun">
+        <omgdi:waypoint x="141" y="225" />
+        <omgdi:waypoint x="141" y="289" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="sid-e0502d32-f8d1-41cf-9c4a-cbb49fecf581">
