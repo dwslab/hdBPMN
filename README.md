@@ -27,3 +27,17 @@ The dataset is licensed under a
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
 [cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
 [cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
+
+## Citing hdBPMN
+
+```BibTeX
+@inproceedings{schaeferSketch2BPMN2021,
+  title = {Sketch2BPMN: Automatic Recognition of Hand-drawn BPMN Models},
+  booktitle = {Advanced Information Systems Engineering},
+  author = {Sch{\"a}fer, Bernhard and {van der Aa}, Han and Leopold, Henrik and Stuckenschmidt, Heiner},
+  year = {2021},
+  publisher = {{Springer International Publishing}},
+  language = {en},
+  series = {Lecture {{Notes}} in {{Computer Science}}}
+}
+```
