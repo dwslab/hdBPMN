@@ -13,9 +13,9 @@ Check out the [pybpmn](https://github.com/dwslab/pybpmn) repository if you are i
 
 ```
 ├── data
-│   ├── annotations         <- ex01-ex09 .bpmn files.
-│   ├── images              <- ex01-ex09 .png/.jpg images.
-│   ├── exercises.pdf       <- modeling tasks ex01-ex09 that the hand-drawn models correspond to.
+│   ├── annotations         <- ex00-ex10 .bpmn files.
+│   ├── images              <- ex00-ex10 .png/.jpg images.
+│   ├── exercises.pdf       <- modeling tasks ex00-ex10 that the hand-drawn models correspond to.
 │   ├── writer_split.csv    <- maps each writerID to one of train/val/test split
 └── README.md               <- Current file
 ```
