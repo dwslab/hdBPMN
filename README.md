@@ -6,6 +6,9 @@ Releases:
 - [v0.0.1](../../releases/tag/v0.0.1): dataset version used in CAiSE 2021 paper
 - [v0.0.2](../../releases/tag/v0.0.2): dataset version used in ICDAR 2021 paper
 
+Check out the [pybpmn](https://github.com/dwslab/pybpmn) repository if you are interested in using the dataset for diagram recognition research.
+[pybpmn](https://github.com/dwslab/pybpmn) contains a BPMN XML parser and a script for creating a COCO dataset.
+
 ## Project Organization
 
 ```
