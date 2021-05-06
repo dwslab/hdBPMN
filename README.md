@@ -36,11 +36,22 @@ The dataset is licensed under a
 ```BibTeX
 @inproceedings{schaeferSketch2BPMN2021,
   title = {Sketch2BPMN: Automatic Recognition of Hand-drawn BPMN Models},
-  booktitle = {Advanced Information Systems Engineering},
   author = {Sch{\"a}fer, Bernhard and {van der Aa}, Han and Leopold, Henrik and Stuckenschmidt, Heiner},
+  booktitle = {Advanced Information Systems Engineering},
   year = {2021},
   publisher = {{Springer International Publishing}},
   language = {en},
   series = {Lecture {{Notes}} in {{Computer Science}}}
+}
+```
+
+```BibTeX
+@inproceedings{schaeferDiagramNet2021,
+  title={DiagramNet: Hand-drawn Diagram Recognition using Visual Arrow-relation Detection},
+  author = {Sch{\"a}fer, Bernhard and Stuckenschmidt, Heiner},
+  booktitle={2021 International Conference on Document Analysis and Recognition (ICDAR)},
+  year={2021},
+  month = sep,
+  language = {en}
 }
 ```
