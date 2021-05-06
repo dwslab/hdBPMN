@@ -1,15 +1,20 @@
-# hdBPMN - hand-drawn BPMN dataset
+## hdBPMN - hand-drawn BPMN dataset
 
 This repository contains the hand-drawn BPMN dataset published jointly with our CAiSE 2021 paper `Sketch2BPMN: Automatic Recognition of Hand-drawn BPMN Models` by Bernhard Schäfer, Han van der Aa, Henrik Leopold and Heiner Stuckenschmidt.
 
-Releases:
+![hdBPMN Example Image](https://github.com/dwslab/hdBPMN/raw/main/data/images/ex03/ex03_writer0088.jpg)
+
+### Releases
+
 - [v0.0.1](../../releases/tag/v0.0.1): dataset version used in CAiSE 2021 paper
 - [v0.0.2](../../releases/tag/v0.0.2): dataset version used in ICDAR 2021 paper
 
-Check out the [pybpmn](https://github.com/dwslab/pybpmn) repository if you are interested in using the dataset for diagram recognition research.
-[pybpmn](https://github.com/dwslab/pybpmn) contains a BPMN XML parser and a script for creating a COCO dataset.
+### Code
 
-## Project Organization
+- [pybpmn](https://github.com/dwslab/pybpmn): contains a BPMN XML parser and a script for creating a COCO dataset. Check out this repository if you are interested in using the dataset for diagram recognition research.
+- [bpmn-image-annotator](https://github.com/dwslab/bpmn-image-annotator): Annotation tool that has been developed to annotate hand-drawn images with ground-truth BPMN models.
+
+### Project Organization
 
 ```
 ├── data
@@ -20,7 +25,7 @@ Check out the [pybpmn](https://github.com/dwslab/pybpmn) repository if you are i
 └── README.md               <- Current file
 ```
 
-## License
+### License
 
 The dataset is licensed under a
 [Creative Commons Attribution 4.0 International License][cc-by].
@@ -31,7 +36,7 @@ The dataset is licensed under a
 [cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
 [cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
 
-## Citing hdBPMN
+### Citing hdBPMN
 
 ```BibTeX
 @inproceedings{schaeferSketch2BPMN2021,
