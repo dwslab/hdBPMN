@@ -1,45 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- {"backgroundSize":1200} -->
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
-  <process id="Process_1gpwvpe">
-    <startEvent id="Event_0onx46o" name="receive new credit request">
-      <outgoing>Flow_0ssv6v5</outgoing>
-    </startEvent>
-    <task id="Activity_0s6sorv" name="assess risk">
+  <process id="Process_1">
+    <task id="Activity_0s6sorv" name="assess&#10;risk">
       <incoming>Flow_0ssv6v5</incoming>
       <outgoing>Flow_1bmyb2n</outgoing>
     </task>
-    <exclusiveGateway id="Gateway_0k1e5w6">
-      <incoming>Flow_1bmyb2n</incoming>
-      <outgoing>Flow_0vl9gbl</outgoing>
-      <outgoing>Flow_0jopnvt</outgoing>
-    </exclusiveGateway>
-    <task id="Activity_0zgmocd" name="perform advanced risk assessment">
+    <task id="Activity_0zgmocd" name="perform&#10;advanced&#10;risk assessment">
       <incoming>Flow_0vl9gbl</incoming>
       <outgoing>Flow_0v30gyr</outgoing>
     </task>
-    <sequenceFlow id="Flow_0vl9gbl" name="risk above threshold" sourceRef="Gateway_0k1e5w6" targetRef="Activity_0zgmocd" />
-    <task id="Activity_03ixe5k" name="perform simple risk assessment">
+    <task id="Activity_03ixe5k" name="Perform&#10;simple&#10;risk&#10;assessment">
       <incoming>Flow_0jopnvt</incoming>
       <outgoing>Flow_0t8ve3m</outgoing>
     </task>
-    <sequenceFlow id="Flow_0jopnvt" name="risk below threshold" sourceRef="Gateway_0k1e5w6" targetRef="Activity_03ixe5k" />
+    <task id="Activity_12j5a2q" name="notify customer&#10;with assessment&#10;result">
+      <incoming>Flow_0ciw899</incoming>
+      <outgoing>Flow_1ttfzsi</outgoing>
+    </task>
+    <task id="Activity_1alp6s4" name="organize&#10;disbursement">
+      <incoming>Flow_09rf7z1</incoming>
+      <outgoing>Flow_0c8w6cc</outgoing>
+    </task>
+    <exclusiveGateway id="Gateway_0k1e5w6">
+      <incoming>Flow_1bmyb2n</incoming>
+      <outgoing>Flow_0jopnvt</outgoing>
+      <outgoing>Flow_0vl9gbl</outgoing>
+    </exclusiveGateway>
     <exclusiveGateway id="Gateway_02cp6y7">
       <incoming>Flow_0v30gyr</incoming>
       <incoming>Flow_0t8ve3m</incoming>
       <outgoing>Flow_1gp4ugt</outgoing>
     </exclusiveGateway>
-    <task id="Activity_12j5a2q" name="notify customer with assessment result">
-      <incoming>Flow_0ciw899</incoming>
-      <outgoing>Flow_1ttfzsi</outgoing>
-    </task>
-    <task id="Activity_1alp6s4" name="organize disbursement">
-      <incoming>Flow_09rf7z1</incoming>
-      <outgoing>Flow_0c8w6cc</outgoing>
-    </task>
-    <endEvent id="Event_0gmsgt8" name="credit request confirmed">
-      <incoming>Flow_1gv3qep</incoming>
-    </endEvent>
     <parallelGateway id="Gateway_14h1wym">
       <incoming>Flow_1ttfzsi</incoming>
       <incoming>Flow_0c8w6cc</incoming>
@@ -47,22 +39,84 @@
     </parallelGateway>
     <parallelGateway id="Gateway_1887hdg">
       <incoming>Flow_1gp4ugt</incoming>
-      <outgoing>Flow_09rf7z1</outgoing>
       <outgoing>Flow_0ciw899</outgoing>
+      <outgoing>Flow_09rf7z1</outgoing>
     </parallelGateway>
-    <sequenceFlow id="Flow_0ssv6v5" sourceRef="Event_0onx46o" targetRef="Activity_0s6sorv" />
-    <sequenceFlow id="Flow_1bmyb2n" sourceRef="Activity_0s6sorv" targetRef="Gateway_0k1e5w6" />
-    <sequenceFlow id="Flow_0v30gyr" sourceRef="Activity_0zgmocd" targetRef="Gateway_02cp6y7" />
-    <sequenceFlow id="Flow_0t8ve3m" sourceRef="Activity_03ixe5k" targetRef="Gateway_02cp6y7" />
-    <sequenceFlow id="Flow_1gp4ugt" sourceRef="Gateway_02cp6y7" targetRef="Gateway_1887hdg" />
-    <sequenceFlow id="Flow_09rf7z1" sourceRef="Gateway_1887hdg" targetRef="Activity_1alp6s4" />
-    <sequenceFlow id="Flow_0ciw899" sourceRef="Gateway_1887hdg" targetRef="Activity_12j5a2q" />
-    <sequenceFlow id="Flow_1ttfzsi" sourceRef="Activity_12j5a2q" targetRef="Gateway_14h1wym" />
-    <sequenceFlow id="Flow_0c8w6cc" sourceRef="Activity_1alp6s4" targetRef="Gateway_14h1wym" />
+    <startEvent id="Event_0onx46o" name="receive&#10;new Credit&#10;request">
+      <outgoing>Flow_0ssv6v5</outgoing>
+    </startEvent>
+    <endEvent id="Event_0gmsgt8" name="credit request&#10;confirmed">
+      <incoming>Flow_1gv3qep</incoming>
+    </endEvent>
     <sequenceFlow id="Flow_1gv3qep" sourceRef="Gateway_14h1wym" targetRef="Event_0gmsgt8" />
+    <sequenceFlow id="Flow_0c8w6cc" sourceRef="Activity_1alp6s4" targetRef="Gateway_14h1wym" />
+    <sequenceFlow id="Flow_1ttfzsi" sourceRef="Activity_12j5a2q" targetRef="Gateway_14h1wym" />
+    <sequenceFlow id="Flow_0ciw899" sourceRef="Gateway_1887hdg" targetRef="Activity_12j5a2q" />
+    <sequenceFlow id="Flow_09rf7z1" sourceRef="Gateway_1887hdg" targetRef="Activity_1alp6s4" />
+    <sequenceFlow id="Flow_1gp4ugt" sourceRef="Gateway_02cp6y7" targetRef="Gateway_1887hdg" />
+    <sequenceFlow id="Flow_0t8ve3m" sourceRef="Activity_03ixe5k" targetRef="Gateway_02cp6y7" />
+    <sequenceFlow id="Flow_0v30gyr" sourceRef="Activity_0zgmocd" targetRef="Gateway_02cp6y7" />
+    <sequenceFlow id="Flow_1bmyb2n" sourceRef="Activity_0s6sorv" targetRef="Gateway_0k1e5w6" />
+    <sequenceFlow id="Flow_0ssv6v5" sourceRef="Event_0onx46o" targetRef="Activity_0s6sorv" />
+    <sequenceFlow id="Flow_0jopnvt" name="risk&#10;below&#10;threhold" sourceRef="Gateway_0k1e5w6" targetRef="Activity_03ixe5k" />
+    <sequenceFlow id="Flow_0vl9gbl" name="rish above&#10;threshold" sourceRef="Gateway_0k1e5w6" targetRef="Activity_0zgmocd" />
   </process>
-  <bpmndi:BPMNDiagram id="sid-74620812-92c4-44e5-949c-aa47393d3830">
-    <bpmndi:BPMNPlane id="sid-cdcae759-2af7-4a6d-bd02-53f3352a731d" bpmnElement="Process_1gpwvpe">
+  <bpmndi:BPMNDiagram id="diagram-0">
+    <bpmndi:BPMNPlane id="plane-0" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="Event_0onx46o_di" bpmnElement="Event_0onx46o">
+        <omgdc:Bounds x="147" y="140" width="43" height="35" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="131.58" y="172.62" width="106.5" height="59.85" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0s6sorv_di" bpmnElement="Activity_0s6sorv">
+        <omgdc:Bounds x="304" y="117" width="133" height="78" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="325.62" y="142.29" width="72.06" height="29.16" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0k1e5w6_di" bpmnElement="Gateway_0k1e5w6" isMarkerVisible="true">
+        <omgdc:Bounds x="511" y="125" width="44" height="45" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0zgmocd_di" bpmnElement="Activity_0zgmocd">
+        <omgdc:Bounds x="690.67" y="108" width="126.67" height="76" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="698.46" y="111.33" width="119.7" height="55.08" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_03ixe5k_di" bpmnElement="Activity_03ixe5k">
+        <omgdc:Bounds x="460" y="282" width="139" height="80" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="467.58" y="286.29" width="107.7" height="70.2" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_02cp6y7_di" bpmnElement="Gateway_02cp6y7" isMarkerVisible="true">
+        <omgdc:Bounds x="744" y="298" width="51" height="47" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12j5a2q_di" bpmnElement="Activity_12j5a2q">
+        <omgdc:Bounds x="785.33" y="470.66" width="130.67" height="53.33" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="797.58" y="469.35" width="119.34" height="53.55" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1alp6s4_di" bpmnElement="Activity_1alp6s4">
+        <omgdc:Bounds x="611" y="477" width="121" height="60" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="616.98" y="478.26" width="109.26" height="40.77" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0gmsgt8_di" bpmnElement="Event_0gmsgt8">
+        <omgdc:Bounds x="766" y="640" width="44" height="40" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="831.54" y="622.62" width="175.86" height="55.62" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_14h1wym_di" bpmnElement="Gateway_14h1wym">
+        <omgdc:Bounds x="767" y="546" width="33" height="42" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1887hdg_di" bpmnElement="Gateway_1887hdg">
+        <omgdc:Bounds x="744" y="415" width="50" height="51" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1gv3qep_di" bpmnElement="Flow_1gv3qep">
         <omgdi:waypoint x="784" y="587" />
         <omgdi:waypoint x="784" y="639" />
@@ -111,61 +165,16 @@
         <omgdi:waypoint x="531" y="168" />
         <omgdi:waypoint x="531" y="282" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="548" y="190" width="49" height="27" />
+          <omgdc:Bounds x="535.38" y="191.07" width="75.9" height="51.21" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0vl9gbl_di" bpmnElement="Flow_0vl9gbl">
         <omgdi:waypoint x="552" y="151" />
         <omgdi:waypoint x="691" y="151" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="548" y="115" width="51" height="27" />
+          <omgdc:Bounds x="578.58" y="106.56" width="108.9" height="39.6" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_0onx46o_di" bpmnElement="Event_0onx46o">
-        <omgdc:Bounds x="147" y="140" width="43" height="35" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="122" y="178" width="89" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0s6sorv_di" bpmnElement="Activity_0s6sorv">
-        <omgdc:Bounds x="304" y="117" width="133" height="78" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0k1e5w6_di" bpmnElement="Gateway_0k1e5w6" isMarkerVisible="true">
-        <omgdc:Bounds x="511" y="125" width="44" height="45" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0zgmocd_di" bpmnElement="Activity_0zgmocd">
-        <omgdc:Bounds x="690.67" y="108" width="126.67" height="76" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_03ixe5k_di" bpmnElement="Activity_03ixe5k">
-        <omgdc:Bounds x="460" y="282" width="139" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_02cp6y7_di" bpmnElement="Gateway_02cp6y7" isMarkerVisible="true">
-        <omgdc:Bounds x="744" y="298" width="51" height="47" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_12j5a2q_di" bpmnElement="Activity_12j5a2q">
-        <omgdc:Bounds x="785.33" y="470.66" width="130.67" height="53.33" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1alp6s4_di" bpmnElement="Activity_1alp6s4">
-        <omgdc:Bounds x="611" y="477" width="121" height="60" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0gmsgt8_di" bpmnElement="Event_0gmsgt8">
-        <omgdc:Bounds x="766" y="640" width="44" height="40" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="864" y="647" width="67" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0mb00ic_di" bpmnElement="Gateway_14h1wym">
-        <omgdc:Bounds x="767" y="546" width="33" height="42" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_000fch5_di" bpmnElement="Gateway_1887hdg">
-        <omgdc:Bounds x="744" y="415" width="50" height="51" />
-      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
-    <bpmndi:BPMNLabelStyle id="sid-e0502d32-f8d1-41cf-9c4a-cbb49fecf581">
-      <omgdc:Font name="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" />
-    </bpmndi:BPMNLabelStyle>
-    <bpmndi:BPMNLabelStyle id="sid-84cb49fd-2f7c-44fb-8950-83c3fa153d3b">
-      <omgdc:Font name="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" />
-    </bpmndi:BPMNLabelStyle>
   </bpmndi:BPMNDiagram>
 </definitions>
