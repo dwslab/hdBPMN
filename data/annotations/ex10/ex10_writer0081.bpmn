@@ -2,25 +2,25 @@
 <!-- {"backgroundSize":1200} -->
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
   <collaboration id="Collaboration_1">
-    <participant id="pool_4" />
-    <participant id="pool_9" processRef="Process_9" />
-    <messageFlow id="Flow_03t5kjh" sourceRef="pool_4" targetRef="messageStartEvent_6" />
-    <messageFlow id="Flow_1bi91kw" sourceRef="messageIntermediateThrowEvent_7" targetRef="pool_4" />
-    <messageFlow id="Flow_14xhehg" sourceRef="pool_4" targetRef="messageIntermediateCatchEvent_11" />
-    <messageFlow id="Flow_0wllz9y" sourceRef="pool_4" targetRef="messageIntermediateCatchEvent_10" />
-    <messageFlow id="Flow_05nnd9d" sourceRef="pool_4" targetRef="messageIntermediateThrowEvent_14" />
+    <participant id="pool_4" name="retailer" />
+    <participant id="pool_9" processRef="Process_9" name="supplier" />
+    <messageFlow id="Flow_03t5kjh" sourceRef="pool_4" targetRef="messageStartEvent_6" name="request&#10;offer" />
+    <messageFlow id="Flow_1bi91kw" sourceRef="messageIntermediateThrowEvent_7" targetRef="pool_4" name="offer" />
+    <messageFlow id="Flow_14xhehg" sourceRef="pool_4" targetRef="messageIntermediateCatchEvent_11" name="order" />
+    <messageFlow id="Flow_0wllz9y" sourceRef="pool_4" targetRef="messageIntermediateCatchEvent_10" name="order" />
+    <messageFlow id="Flow_05nnd9d" sourceRef="pool_4" targetRef="messageIntermediateThrowEvent_14" name="Order" />
   </collaboration>
   <process id="Process_9">
     <laneSet id="LaneSet_1qe11bn" />
-    <task id="task_0">
+    <task id="task_0" name="update&#10;order">
       <incoming>Flow_13z6gdg</incoming>
       <outgoing>Flow_00qh40z</outgoing>
     </task>
-    <task id="task_2">
+    <task id="task_2" name="prepare&#10;offer">
       <incoming>Flow_15rpt72</incoming>
       <outgoing>Flow_0hieg1t</outgoing>
     </task>
-    <subProcess id="subProcessCollapsed_1">
+    <subProcess id="subProcessCollapsed_1" name="process&#10;order">
       <incoming>Flow_0fc3827</incoming>
       <outgoing>Flow_1ozotoi</outgoing>
     </subProcess>
@@ -41,21 +41,21 @@
       <outgoing>Flow_15owc7i</outgoing>
       <outgoing>Flow_09ma3zh</outgoing>
     </eventBasedGateway>
-    <startEvent id="messageStartEvent_6">
+    <startEvent id="messageStartEvent_6" name="request offer&#10;received">
       <outgoing>Flow_15rpt72</outgoing>
       <messageEventDefinition id="MessageEventDefinition_6" />
     </startEvent>
-    <intermediateCatchEvent id="messageIntermediateCatchEvent_11">
+    <intermediateCatchEvent id="messageIntermediateCatchEvent_11" name="order&#10;changed">
       <incoming>Flow_15owc7i</incoming>
       <outgoing>Flow_13z6gdg</outgoing>
       <messageEventDefinition id="MessageEventDefinition_11" />
     </intermediateCatchEvent>
-    <intermediateThrowEvent id="messageIntermediateThrowEvent_7">
+    <intermediateThrowEvent id="messageIntermediateThrowEvent_7" name="offer sent&#10;back">
       <incoming>Flow_18jgith</incoming>
       <outgoing>Flow_0cv98ru</outgoing>
       <messageEventDefinition id="MessageEventDefinition_7" />
     </intermediateThrowEvent>
-    <intermediateCatchEvent id="timerIntermediateEvent_13">
+    <intermediateCatchEvent id="timerIntermediateEvent_13" name="48h">
       <incoming>Flow_1jw5j53</incoming>
       <outgoing>Flow_0cd871h</outgoing>
       <timerEventDefinition id="TimerEventDefinition_13" />
@@ -86,15 +86,15 @@
     <sequenceFlow id="Flow_15owc7i" sourceRef="eventBasedGateway_8" targetRef="messageIntermediateCatchEvent_11" />
     <sequenceFlow id="Flow_13z6gdg" sourceRef="messageIntermediateCatchEvent_11" targetRef="task_0" />
     <sequenceFlow id="Flow_00qh40z" sourceRef="task_0" targetRef="exclusiveGateway_5" />
-    <sequenceFlow id="Flow_1a2652a" sourceRef="exclusiveGateway_5" targetRef="intermediateEvent_17" />
-    <sequenceFlow id="Flow_1se8h06" sourceRef="exclusiveGateway_5" targetRef="exclusiveGateway_3" />
+    <sequenceFlow id="Flow_1a2652a" sourceRef="exclusiveGateway_5" targetRef="intermediateEvent_17" name="&gt;=fourtimes" />
+    <sequenceFlow id="Flow_1se8h06" sourceRef="exclusiveGateway_5" targetRef="exclusiveGateway_3" name="&lt;4 times" />
     <sequenceFlow id="Flow_09ma3zh" sourceRef="eventBasedGateway_8" targetRef="messageIntermediateCatchEvent_10" />
-    <intermediateCatchEvent id="messageIntermediateCatchEvent_10">
+    <intermediateCatchEvent id="messageIntermediateCatchEvent_10" name="order&#10;confirmed">
       <incoming>Flow_09ma3zh</incoming>
       <outgoing>Flow_0fc3827</outgoing>
       <messageEventDefinition id="MessageEventDefinition_10" />
     </intermediateCatchEvent>
-    <intermediateCatchEvent id="messageIntermediateThrowEvent_14">
+    <intermediateCatchEvent id="messageIntermediateThrowEvent_14" name="order cancelled">
       <incoming>Flow_0z9k6ap</incoming>
       <outgoing>Flow_1k2d9cn</outgoing>
       <messageEventDefinition id="MessageEventDefinition_0db46oy" />
@@ -106,9 +106,15 @@
     <bpmndi:BPMNPlane id="plane-0" bpmnElement="Collaboration_1">
       <bpmndi:BPMNShape id="pool_4_di" bpmnElement="pool_4" isHorizontal="true">
         <omgdc:Bounds x="79" y="63" width="794" height="49" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="326.06" y="80.84" width="88.06" height="22.61" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="pool_9_di" bpmnElement="pool_9" isHorizontal="true">
         <omgdc:Bounds x="85" y="168" width="795" height="391" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="86.66" y="329.43" width="35.62" height="84.89" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1ozotoi_di" bpmnElement="Flow_1ozotoi">
         <omgdi:waypoint x="754" y="316" />
@@ -126,10 +132,16 @@
         <omgdi:waypoint x="697" y="531" />
         <omgdi:waypoint x="361" y="531" />
         <omgdi:waypoint x="361" y="377" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="447.26" y="512.63" width="76.42" height="19.16" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1a2652a_di" bpmnElement="Flow_1a2652a">
         <omgdi:waypoint x="727" y="531" />
         <omgdi:waypoint x="799" y="531" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="726.74" y="511.96" width="69.82" height="12.32" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_00qh40z_di" bpmnElement="Flow_00qh40z">
         <omgdi:waypoint x="711" y="490" />
@@ -181,12 +193,21 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="task_0_di" bpmnElement="task_0">
         <omgdc:Bounds x="675.99" y="445.92" width="81.32" height="44.21" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="686.16" y="450.97" width="62.63" height="33.98" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="task_2_di" bpmnElement="task_2">
         <omgdc:Bounds x="236.27" y="336.84" width="84.18" height="48.27" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="253.82" y="345.83" width="57.82" height="33.22" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="subProcessCollapsed_1_di" bpmnElement="subProcessCollapsed_1">
         <omgdc:Bounds x="676.41" y="291.08" width="78.01" height="50" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="687.02" y="291.46" width="57.58" height="33.92" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="exclusiveGateway_3_di" bpmnElement="exclusiveGateway_3" isMarkerVisible="true">
         <omgdc:Bounds x="345.29" y="343.64" width="33.33" height="33.43" />
@@ -199,15 +220,27 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="messageStartEvent_6_di" bpmnElement="messageStartEvent_6">
         <omgdc:Bounds x="165.38" y="347.75" width="40.5" height="39.55" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="162.98" y="387.32" width="67.42" height="31.48" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="messageIntermediateCatchEvent_11_di" bpmnElement="messageIntermediateCatchEvent_11">
         <omgdc:Bounds x="602.24" y="450.63" width="43.31" height="40.71" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="592.1" y="489" width="58.18" height="27.09" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="messageIntermediateThrowEvent_7_di" bpmnElement="messageIntermediateThrowEvent_7">
         <omgdc:Bounds x="404.06" y="335.09" width="49.35" height="44.38" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="402.74" y="381.5" width="68.5" height="31.14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="timerIntermediateEvent_13_di" bpmnElement="timerIntermediateEvent_13">
         <omgdc:Bounds x="565.2" y="226.34" width="40.64" height="37.05" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="569.54" y="261" width="30.46" height="14.01" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0s7qez8_di" bpmnElement="intermediateEvent_15">
         <omgdc:Bounds x="637" y="232" width="29" height="25" />
@@ -223,29 +256,50 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="messageIntermediateCatchEvent_10_di" bpmnElement="messageIntermediateCatchEvent_10">
         <omgdc:Bounds x="595.34" y="301.79" width="36.58" height="35.63" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="587.66" y="335.93" width="55.18" height="28.1" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_09054ww_di" bpmnElement="messageIntermediateThrowEvent_14">
         <omgdc:Bounds x="588" y="382" width="39" height="40" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="562.34" y="417.45" width="100.3" height="19.49" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_03t5kjh_di" bpmnElement="Flow_03t5kjh">
         <omgdi:waypoint x="182" y="112" />
         <omgdi:waypoint x="182" y="348" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="182.18" y="133.92" width="54.46" height="36.28" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1bi91kw_di" bpmnElement="Flow_1bi91kw">
         <omgdi:waypoint x="429" y="333" />
         <omgdi:waypoint x="446" y="112" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="450.74" y="136.28" width="33.22" height="20.93" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_14xhehg_di" bpmnElement="Flow_14xhehg">
         <omgdi:waypoint x="625" y="112" />
         <omgdi:waypoint x="638" y="456" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="630.31" y="135.33" width="40.95" height="17.51" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0wllz9y_di" bpmnElement="Flow_0wllz9y">
         <omgdi:waypoint x="607" y="112" />
         <omgdi:waypoint x="617" y="302" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="610.94" y="126.74" width="37.24" height="14.16" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_05nnd9d_di" bpmnElement="Flow_05nnd9d">
         <omgdi:waypoint x="587" y="112" />
         <omgdi:waypoint x="604" y="383" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="587.3" y="145.9" width="34.3" height="21.6" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
