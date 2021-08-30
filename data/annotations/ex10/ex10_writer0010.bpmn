@@ -2,13 +2,13 @@
 <!-- {"backgroundSize":1200} -->
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
   <collaboration id="Collaboration_1">
-    <participant id="pool_0" processRef="Process_0" name="supplier" />
+    <participant id="pool_0" name="supplier" processRef="Process_0" />
     <participant id="pool_11" name="retailer" />
-    <messageFlow id="Flow_1fnkzpj" sourceRef="pool_11" targetRef="messageStartEvent_15" name="offer&#10;request" />
-    <messageFlow id="Flow_18gz1do" sourceRef="messageIntermediateThrowEvent_10" targetRef="pool_11" name="offer" />
-    <messageFlow id="Flow_1istpja" sourceRef="pool_11" targetRef="messageIntermediateCatchEvent_17" name="order&#10;Confir-&#10;mation" />
-    <messageFlow id="Flow_0etwqx3" sourceRef="pool_11" targetRef="messageIntermediateCatchEvent_14" name="order&#10;change" />
-    <messageFlow id="Flow_0fq1rt2" sourceRef="pool_11" targetRef="messageIntermediateCatchEvent_13" name="cancellation" />
+    <messageFlow id="Flow_1fnkzpj" name="offer&#10;request" sourceRef="pool_11" targetRef="messageStartEvent_15" />
+    <messageFlow id="Flow_18gz1do" name="offer" sourceRef="messageIntermediateThrowEvent_10" targetRef="pool_11" />
+    <messageFlow id="Flow_1istpja" name="order&#10;Confir-&#10;mation" sourceRef="pool_11" targetRef="messageIntermediateCatchEvent_17" />
+    <messageFlow id="Flow_0etwqx3" name="order&#10;change" sourceRef="pool_11" targetRef="messageIntermediateCatchEvent_14" />
+    <messageFlow id="Flow_0fq1rt2" name="cancellation" sourceRef="pool_11" targetRef="messageIntermediateCatchEvent_13" />
   </collaboration>
   <process id="Process_0">
     <task id="task_1" name="cancel&#10;order">
@@ -76,10 +76,6 @@
       <outgoing>Flow_1nxzmoh</outgoing>
       <messageEventDefinition id="MessageEventDefinition_10" />
     </intermediateThrowEvent>
-    <endEvent id="messageEndEvent_16" name="order&#10;cancelled">
-      <incoming>Flow_0dsc8i6</incoming>
-      <messageEventDefinition id="MessageEventDefinition_16" />
-    </endEvent>
     <intermediateCatchEvent id="timerIntermediateEvent_7" name="48&#10;hours">
       <incoming>Flow_1eyiht9</incoming>
       <outgoing>Flow_1n96go4</outgoing>
@@ -91,13 +87,13 @@
     <sequenceFlow id="Flow_1nxzmoh" sourceRef="messageIntermediateThrowEvent_10" targetRef="eventBasedGateway_8" />
     <sequenceFlow id="Flow_1k7r12y" sourceRef="eventBasedGateway_8" targetRef="messageIntermediateCatchEvent_14" />
     <sequenceFlow id="Flow_0ybf3xe" sourceRef="messageIntermediateCatchEvent_14" targetRef="exclusiveGateway_4" />
-    <sequenceFlow id="Flow_01j2346" sourceRef="exclusiveGateway_4" targetRef="task_3" name="order&#10;change&#10;number &gt;3" />
+    <sequenceFlow id="Flow_01j2346" name="order&#10;change&#10;number &#62;3" sourceRef="exclusiveGateway_4" targetRef="task_3" />
     <endEvent id="messageEndEvent_18" name="order&#10;cancelled">
       <incoming>Flow_1lcjaze</incoming>
       <terminateEventDefinition id="TerminateEventDefinition_0r9jtas" />
     </endEvent>
     <sequenceFlow id="Flow_1lcjaze" sourceRef="task_3" targetRef="messageEndEvent_18" />
-    <sequenceFlow id="Flow_1869chb" sourceRef="exclusiveGateway_4" targetRef="exclusiveGateway_12" name="order&#10;change&#10;number&#10;1,2 or 3" />
+    <sequenceFlow id="Flow_1869chb" name="order&#10;change&#10;number&#10;1,2 or 3" sourceRef="exclusiveGateway_4" targetRef="exclusiveGateway_12" />
     <sequenceFlow id="Flow_1eyiht9" sourceRef="eventBasedGateway_8" targetRef="timerIntermediateEvent_7" />
     <sequenceFlow id="Flow_1n96go4" sourceRef="timerIntermediateEvent_7" targetRef="exclusiveGateway_6" />
     <sequenceFlow id="Flow_1gq8tka" sourceRef="exclusiveGateway_6" targetRef="task_1" />
@@ -107,6 +103,10 @@
     <sequenceFlow id="Flow_0oojxfc" sourceRef="eventBasedGateway_8" targetRef="messageIntermediateCatchEvent_17" />
     <sequenceFlow id="Flow_0xuno4l" sourceRef="messageIntermediateCatchEvent_17" targetRef="task_2" />
     <sequenceFlow id="Flow_1g27qub" sourceRef="task_2" targetRef="endEvent_9" />
+    <endEvent id="messageEndEvent_16" name="order&#10;cancelled">
+      <incoming>Flow_0dsc8i6</incoming>
+      <terminateEventDefinition id="TerminateEventDefinition_0vgljxu" />
+    </endEvent>
   </process>
   <bpmndi:BPMNDiagram id="diagram-0">
     <bpmndi:BPMNPlane id="plane-0" bpmnElement="Collaboration_1">
@@ -285,12 +285,6 @@
           <omgdc:Bounds x="354.72" y="1003.09" width="49.32" height="34.28" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="messageEndEvent_16_di" bpmnElement="messageEndEvent_16">
-        <omgdc:Bounds x="982.72" y="1371.04" width="48.35" height="56.3" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1032.12" y="1373.77" width="115.68" height="57.08" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="timerIntermediateEvent_7_di" bpmnElement="timerIntermediateEvent_7">
         <omgdc:Bounds x="465.36" y="1318.12" width="58.12" height="62.91" />
         <bpmndi:BPMNLabel>
@@ -301,6 +295,12 @@
         <omgdc:Bounds x="991" y="1038" width="52" height="47" />
         <bpmndi:BPMNLabel>
           <omgdc:Bounds x="1047.12" y="1040.25" width="114.24" height="47.45" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0c7u2xf_di" bpmnElement="messageEndEvent_16">
+        <omgdc:Bounds x="983" y="1371" width="48" height="56" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1067" y="1374" width="47" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_1k5w00x_di" bpmnElement="pool_11" isHorizontal="true">
