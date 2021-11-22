@@ -5,7 +5,7 @@
     <participant id="Participant_12hwun5" name="Hospital" processRef="Process_1gpwvpe" />
     <participant id="Participant_0oe1stf" name="external" />
     <messageFlow id="Flow_1o5ku80" name="Request&#10;sent" sourceRef="Activity_1pfysbi" targetRef="Participant_0oe1stf" />
-    <messageFlow id="Flow_1bwe8zf" sourceRef="Participant_0oe1stf" targetRef="Event_00l7qog" name="expert" />
+    <messageFlow id="Flow_1bwe8zf" name="expert" sourceRef="Participant_0oe1stf" targetRef="Event_00l7qog" />
     <messageFlow id="Flow_1w7fp4r" sourceRef="Event_0nr8uev" targetRef="Participant_0oe1stf" />
   </collaboration>
   <process id="Process_1gpwvpe">
@@ -26,10 +26,10 @@
         <flowNodeRef>Event_0nr8uev</flowNodeRef>
         <flowNodeRef>Gateway_09pg1if</flowNodeRef>
         <flowNodeRef>Activity_11k3sq0</flowNodeRef>
-        <flowNodeRef>Event_00l7qog</flowNodeRef>
         <flowNodeRef>Gateway_01hg20l</flowNodeRef>
         <flowNodeRef>Gateway_1t4dzbo</flowNodeRef>
         <flowNodeRef>Event_0u7b794</flowNodeRef>
+        <flowNodeRef>Event_00l7qog</flowNodeRef>
       </lane>
     </laneSet>
     <startEvent id="Event_1vuxygl" name="New case&#10;regarding a certain&#10;doctor">
@@ -44,7 +44,7 @@
       <outgoing>Flow_0p05u45</outgoing>
     </task>
     <task id="Activity_11k3sq0" name="Forward&#10;review">
-      <incoming>Flow_1cf2ftf</incoming>
+      <incoming>Flow_1b1zrzs</incoming>
       <outgoing>Flow_05rscvn</outgoing>
     </task>
     <parallelGateway id="Gateway_1nckoe5">
@@ -69,12 +69,12 @@
     <task id="Activity_1pfysbi" name="Ask eternal&#10;expert for review">
       <incoming>Flow_0d0t9gl</incoming>
       <outgoing>Flow_0tilzhm</outgoing>
-      <multiInstanceLoopCharacteristics/>
+      <multiInstanceLoopCharacteristics />
     </task>
     <eventBasedGateway id="Gateway_01hg20l">
       <incoming>Flow_0tilzhm</incoming>
       <outgoing>Flow_12qity9</outgoing>
-      <outgoing>Flow_1cf2ftf</outgoing>
+      <outgoing>Flow_0dsk0tm</outgoing>
     </eventBasedGateway>
     <parallelGateway id="Gateway_09pg1if">
       <incoming>Flow_05rscvn</incoming>
@@ -114,16 +114,19 @@
       <incoming>Flow_1u3yici</incoming>
       <outgoing>Flow_12mrvae</outgoing>
     </parallelGateway>
-    <intermediateCatchEvent id="Event_00l7qog" name="Review&#10;received">
-      <messageEventDefinition id="MessageEventDefinition_1kjzgzk" />
-    </intermediateCatchEvent>
     <sequenceFlow id="Flow_10fs49l" sourceRef="Event_0u7b794" targetRef="Gateway_1t4dzbo" />
-    <sequenceFlow id="Flow_1cf2ftf" sourceRef="Gateway_01hg20l" targetRef="Activity_11k3sq0" />
     <intermediateCatchEvent id="Event_0u7b794" name="certain&#10;time (not&#10;specified)">
       <incoming>Flow_12qity9</incoming>
       <outgoing>Flow_10fs49l</outgoing>
       <timerEventDefinition id="TimerEventDefinition_0mxbnb6" />
     </intermediateCatchEvent>
+    <intermediateCatchEvent id="Event_00l7qog" name="Review&#10;received">
+      <incoming>Flow_0dsk0tm</incoming>
+      <outgoing>Flow_1b1zrzs</outgoing>
+      <messageEventDefinition id="MessageEventDefinition_1kjzgzk" />
+    </intermediateCatchEvent>
+    <sequenceFlow id="Flow_0dsk0tm" sourceRef="Gateway_01hg20l" targetRef="Event_00l7qog" />
+    <sequenceFlow id="Flow_1b1zrzs" sourceRef="Event_00l7qog" targetRef="Activity_11k3sq0" />
     <textAnnotation id="TextAnnotation_0tknuad">
       <text>List of experts</text>
     </textAnnotation>
@@ -149,12 +152,6 @@
           <omgdc:Bounds x="127.83" y="302.2" width="47.4" height="53.58" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_1cf2ftf_di" bpmnElement="Flow_1cf2ftf">
-        <di:waypoint x="775" y="736" />
-        <di:waypoint x="855" y="736" />
-        <di:waypoint x="855" y="737" />
-        <di:waypoint x="934" y="737" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10fs49l_di" bpmnElement="Flow_10fs49l">
         <di:waypoint x="722" y="499" />
         <di:waypoint x="541" y="499" />
@@ -230,6 +227,14 @@
         <di:waypoint x="352" y="242" />
         <di:waypoint x="494" y="242" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dsk0tm_di" bpmnElement="Flow_0dsk0tm">
+        <di:waypoint x="774" y="737" />
+        <di:waypoint x="816" y="738" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1b1zrzs_di" bpmnElement="Flow_1b1zrzs">
+        <di:waypoint x="870" y="735" />
+        <di:waypoint x="934" y="737" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_1vuxygl_di" bpmnElement="Event_1vuxygl">
         <omgdc:Bounds x="310.66" y="221.9" width="40.97" height="40.97" />
         <bpmndi:BPMNLabel>
@@ -287,12 +292,6 @@
           <omgdc:Bounds x="1382.99" y="735.32" width="73.3" height="61.88" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1b4chjd_di" bpmnElement="Event_0u7b794">
-        <omgdc:Bounds x="720" y="481" width="55" height="55" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="746.58" y="439.31" width="145.41" height="108.28" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ggywkw_di" bpmnElement="Activity_0qajb1a">
         <omgdc:Bounds x="599" y="197" width="153" height="84" />
         <bpmndi:BPMNLabel>
@@ -311,7 +310,13 @@
       <bpmndi:BPMNShape id="Event_00l7qog_di" bpmnElement="Event_00l7qog">
         <omgdc:Bounds x="815" y="701" width="55" height="64" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="857.96" y="740.4" width="113.4" height="70.17" />
+          <omgdc:Bounds x="894" y="740" width="42" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1b4chjd_di" bpmnElement="Event_0u7b794">
+        <omgdc:Bounds x="720" y="481" width="55" height="55" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="746.58" y="439.31" width="145.41" height="108.28" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0tknuad_di" bpmnElement="TextAnnotation_0tknuad">
@@ -338,7 +343,7 @@
         <di:waypoint x="842" y="948" />
         <di:waypoint x="842" y="760" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="844.59" y="955.97" width="125.77" height="73.26" />
+          <omgdc:Bounds x="892" y="956" width="31" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1w7fp4r_di" bpmnElement="Flow_1w7fp4r">

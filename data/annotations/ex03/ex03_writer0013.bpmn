@@ -148,7 +148,7 @@
     <dataObjectReference id="DataObjectReference_16x3qm5" name="Notice update&#10;forms [SAP]" dataObjectRef="DataObject_06ri5he" />
     <dataObject id="DataObject_06ri5he" />
     <dataObjectReference id="DataObjectReference_12mhr96" name="Forms&#10;filled out" dataObjectRef="DataObject_0nskxhl" />
-    <dataObject id="DataObject_0nskxhl" />
+    <dataObject id="DataObject_0nskxhl" isCollection="true" />
     <dataObjectReference id="DataObjectReference_1lyvoyl" name="insurance Claim and documentation" dataObjectRef="DataObject_001yuao" />
     <dataObject id="DataObject_001yuao" />
     <dataObjectReference id="DataObjectReference_0borxnx" name="Automatic notice&#10;claim rejected[SAP]" dataObjectRef="DataObject_1sxz4un" />
@@ -163,7 +163,7 @@
     <sequenceFlow id="Flow_0jyv9t1" name="forms&#10;incomplete" sourceRef="Gateway_1s3km44" targetRef="Activity_13e4cnb" />
     <sequenceFlow id="Flow_0fmoja2" sourceRef="Activity_13e4cnb" targetRef="Event_0syiqtf" />
     <dataObjectReference id="DataObjectReference_05ymujo" name="Forms [SAP]" dataObjectRef="DataObject_0rwi7aj" />
-    <dataObject id="DataObject_0rwi7aj" />
+    <dataObject id="DataObject_0rwi7aj" isCollection="true" />
     <sequenceFlow id="Flow_1v8apek" sourceRef="Event_0a38gpg" targetRef="Gateway_1qrsvld" />
     <sequenceFlow id="Flow_0pp6teb" sourceRef="Event_0dqfo8t" targetRef="Gateway_1qrsvld" />
     <sequenceFlow id="Flow_0xw9ilw" name="insured" sourceRef="Gateway_0b1nuee" targetRef="Activity_05w3s5g" />
@@ -172,8 +172,8 @@
     <sequenceFlow id="Flow_0joowzw" name="simple&#10;claim" sourceRef="Gateway_09vlh1q" targetRef="Event_0dqfo8t" />
     <sequenceFlow id="Flow_13kkarp" sourceRef="Gateway_1qrsvld" targetRef="Gateway_1dusmtb" />
     <sequenceFlow id="Flow_0xywdc4" name="forms&#10;incomplete" sourceRef="Gateway_1s3km44" targetRef="Event_1b9fl8p" />
-    <sequenceFlow id="Flow_04fcluw" sourceRef="Gateway_0b1nuee" targetRef="Event_0yh4on7" />
-    <intermediateThrowEvent id="Event_0yh4on7">
+    <sequenceFlow id="Flow_04fcluw" name="not insured" sourceRef="Gateway_0b1nuee" targetRef="Event_0yh4on7" />
+    <endEvent id="Event_0yh4on7">
       <incoming>Flow_04fcluw</incoming>
       <property id="Property_1k5i7ma" name="__targetRef_placeholder" />
       <dataInputAssociation id="DataInputAssociation_05gp160">
@@ -181,7 +181,7 @@
         <targetRef>Property_1k5i7ma</targetRef>
       </dataInputAssociation>
       <messageEventDefinition id="MessageEventDefinition_0ddlk7l" />
-    </intermediateThrowEvent>
+    </endEvent>
     <association id="Association_1qg4xis" sourceRef="Event_0dqfo8t" targetRef="TextAnnotation_145tcf9" />
     <textAnnotation id="TextAnnotation_145tcf9">
       <text>black letter</text>
@@ -208,6 +208,15 @@
           <omgdc:Bounds x="25.05" y="280.01" width="25.03" height="186.7" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_04fcluw_di" bpmnElement="Flow_04fcluw">
+        <omgdi:waypoint x="376" y="568" />
+        <omgdi:waypoint x="376" y="598" />
+        <omgdi:waypoint x="374" y="598" />
+        <omgdi:waypoint x="374" y="627" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="283" y="568" width="90" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0xywdc4_di" bpmnElement="Flow_0xywdc4">
         <omgdi:waypoint x="1012" y="567" />
         <omgdi:waypoint x="1012" y="644" />
@@ -301,12 +310,6 @@
         <omgdi:waypoint x="135" y="545" />
         <omgdi:waypoint x="162" y="545" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_04fcluw_di" bpmnElement="Flow_04fcluw">
-        <omgdi:waypoint x="376" y="568" />
-        <omgdi:waypoint x="376" y="598" />
-        <omgdi:waypoint x="374" y="598" />
-        <omgdi:waypoint x="374" y="627" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_08y511b_di" bpmnElement="Event_04ww2tn">
         <omgdc:Bounds x="72" y="525" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -355,9 +358,6 @@
       <bpmndi:BPMNShape id="Event_0a38gpg_di" bpmnElement="Event_0a38gpg">
         <omgdc:Bounds x="670" y="340" width="35" height="34" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0yh4on7_di" bpmnElement="Event_0yh4on7">
-        <omgdc:Bounds x="355" y="627" width="35" height="34" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1b9fl8p_di" bpmnElement="Event_1b9fl8p">
         <omgdc:Bounds x="957" y="624" width="39" height="38" />
       </bpmndi:BPMNShape>
@@ -379,7 +379,7 @@
       <bpmndi:BPMNShape id="DataObjectReference_12mhr96_di" bpmnElement="DataObjectReference_12mhr96">
         <omgdc:Bounds x="892" y="709" width="36" height="45" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="862.05" y="762.81" width="99.96" height="42.6" />
+          <omgdc:Bounds x="892" y="763" width="41" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataObjectReference_1lyvoyl_di" bpmnElement="DataObjectReference_1lyvoyl">
@@ -403,8 +403,11 @@
       <bpmndi:BPMNShape id="DataObjectReference_05ymujo_di" bpmnElement="DataObjectReference_05ymujo">
         <omgdc:Bounds x="726" y="428" width="32" height="46" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="700.32" y="469.65" width="93.34" height="19.13" />
+          <omgdc:Bounds x="716" y="470" width="63" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0yh4on7_di" bpmnElement="Event_0yh4on7">
+        <omgdc:Bounds x="355" y="627" width="35" height="34" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_145tcf9_di" bpmnElement="TextAnnotation_145tcf9">
         <omgdc:Bounds x="479.19" y="459.32" width="118.99" height="27.22" />
@@ -451,10 +454,6 @@
         <omgdi:waypoint x="742" y="355" />
         <omgdi:waypoint x="708" y="355" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_05gp160_di" bpmnElement="DataInputAssociation_05gp160">
-        <omgdi:waypoint x="321" y="644" />
-        <omgdi:waypoint x="355" y="641" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_0lqmjmv_di" bpmnElement="DataInputAssociation_0lqmjmv">
         <omgdi:waypoint x="928" y="732" />
         <omgdi:waypoint x="984" y="732" />
@@ -469,6 +468,10 @@
         <omgdi:waypoint x="781" y="732" />
         <omgdi:waypoint x="891" y="732" />
         <omgdi:waypoint x="891" y="739" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_05gp160_di" bpmnElement="DataInputAssociation_05gp160">
+        <omgdi:waypoint x="321" y="644" />
+        <omgdi:waypoint x="355" y="641" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0lmnf51_di" bpmnElement="Flow_0lmnf51">
         <omgdi:waypoint x="91" y="236" />
