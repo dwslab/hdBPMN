@@ -11,7 +11,7 @@ This repository contains the hand-drawn BPMN dataset published jointly with our 
 
 ### Related Repositories
 
-- [pybpmn](https://github.com/dwslab/pybpmn): contains a BPMN XML parser and a script for creating a COCO dataset. Check out this repository if you are interested in using the dataset for diagram recognition research.
+- [pybpmn](https://github.com/dwslab/pybpmn): contains a BPMN XML parser and a script for creating a dataset in the COCO format (COCO is a common format for computer vision datasets).
 - [handwritten-diagram-datasets](https://github.com/bernhardschaefer/handwritten-diagram-datasets/): hosts the generated COCO datasets among other diagram datasets and features a demo that shows how to parse and visualize the COCO annotations
 - [bpmn-image-annotator](https://github.com/dwslab/bpmn-image-annotator): Annotation tool that has been developed to annotate hand-drawn images with ground-truth BPMN models.
 
