@@ -25,6 +25,7 @@ Also check out our [Sketch2BPMN](http://sketch2bpmn.informatik.uni-mannheim.de/)
 ├── data
 │   ├── annotations         <- ex00-ex10 .bpmn files.
 │   ├── images              <- ex00-ex10 .png/.jpg images.
+│   ├── words               <- ex00-ex10 Pascal VOC word annotation .xml files.
 │   ├── exercises.pdf       <- modeling tasks ex00-ex10 that the hand-drawn models correspond to.
 │   ├── writer_split.csv    <- maps each writerID to one of train/val/test split
 └── README.md               <- Current file
