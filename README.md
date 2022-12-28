@@ -6,8 +6,10 @@ This repository contains the hand-drawn BPMN dataset published jointly with our 
 
 ### Releases
 
-- [v0.0.1](../../releases/tag/v0.0.1): dataset version used in CAiSE 2021 paper
-- [v0.0.2](../../releases/tag/v0.0.2): dataset version used in ICDAR 2021 paper
+- [v0.0.1](../../releases/tag/v0.0.1): dataset version used in [Sketch2BPMN paper](https://link.springer.com/chapter/10.1007/978-3-030-79382-1_21)
+- [v0.0.2](../../releases/tag/v0.0.2): dataset version used in [DiagramNet paper](https://link.springer.com/chapter/10.1007/978-3-030-86549-8_39)
+- [v1.0.0](../../releases/tag/v1.0.0): dataset version used in [Sketch2Process paper](https://ieeexplore.ieee.org/document/9980425)
+
 
 ### Related Repositories
 
